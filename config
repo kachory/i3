@@ -1,0 +1,210 @@
+#--[i3 configuration file]--#
+
+# mod touch
+set $mod Mod4
+
+# default programs
+set $browser chromium
+set $TERMINAL urxvt
+
+# font 
+font pango:SF UI Text Regular 10
+
+# default layout
+workspace_layout default 
+
+# gaps 
+set $default_gaps_inner 10
+set $default_gaps_outer 10
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+#smart_gaps on
+#smart_borders on
+
+# borders
+for_window [class="^.*"] border pixel 4
+new_window pixel 1
+new_float pixel 1
+
+# class                 border  backgr. text    indicator
+client.focused          #000000 #FFFFFF #000000 #FFFFFF
+client.focused_inactive #000000 #000000 #000000 #000000
+client.unfocused        #000000 #000000 #000000 #000000
+client.urgent           #000000 #000000 #000000 #000000
+client.placeholder      #000000 #000000 #000000 #000000
+
+# Rofi
+bindsym $mod+d exec --no-startup-id rofi -show combi -modi window run -matching glob -separator-style "none" -font "SF UI Text Regular 11" -hide-scrollbar -lines 10 -auto-select -terminal urxvt
+ 
+# start a terminal
+bindsym $mod+Return exec urxvt
+
+# autostart programs
+exec --no-startup-id xrdb -load ~/.Xdefaults
+exec --no-startup-id compton
+exec --no-startup-id dropbox start
+exec --no-startup-id dbus-launch i3
+exec --no-startup-id redshift
+exec --no-startup-id feh --bg-fill ~/Images/Feh
+#exec --no-startup-id conky -c ~/.conkyrc
+
+# start programs shortcuts
+bindsym $mod+i exec --no-startup-id chromium
+bindsym $mod+j exec --no-startup-id transmission-gtk
+bindsym $mod+g exec --no-startup-id gedit
+bindsym $mod+p exec --no-startup-id shotwell
+bindsym $mod+t exec --no-startup-id thunar
+bindsym $mod+k exec --no-startup-id lxappearance
+bindsym $mod+l exec --no-startup-id libreoffice
+bindsym $mod+Shift+p exec --no-startup-id evince
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus windows
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused windows alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# jump to urgent window
+bindsym $mod+x [urgent=latest] focus
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# set workspace
+set $workspace1 " "
+set $workspace2 " " 
+set $workspace3 " "
+set $workspace4 " "
+set $workspace5 " "
+set $workspace6 " "
+set $workspace7 " "
+set $workspace8 " "
+set $workspace9 " "
+set $workspace10 " "
+
+#set $workspace1 "I"
+#set $workspace2 "II" 
+#set $workspace3 "III"
+#set $workspace4 "IV"
+#set $workspace5 "V"
+#set $workspace6 "VI"
+#set $workspace7 "VII"
+#set $workspace8 "VIII"
+#set $workspace9 "IX"
+#set $workspace10 "X"
+
+
+# switch to workspace
+bindsym $mod+ampersand workspace $workspace1
+bindsym $mod+eacute workspace $workspace2
+bindsym $mod+quotedbl workspace $workspace3
+bindsym $mod+apostrophe workspace$workspace4
+bindsym $mod+parenleft workspace $workspace5
+bindsym $mod+minus workspace $workspace6
+bindsym $mod+egrave workspace $workspace7
+bindsym $mod+underscore workspace $workspace8
+bindsym $mod+ccedilla workspace $workspace9
+bindsym $mod+agrave workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+egrave move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+ccedilla move container to workspace $workspace9
+bindsym $mod+Shift+agrave move container to workspace$workspace10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace 
+bindsym $mod+Shift+r restart
+
+# exit i3 
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Courage fuyons !?' -b 'Je le crains...' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+        
+	bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym m resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Status bar
+#exec_always --no-startup-id "killall polybar; polybar -r mybar"
+#bindsym $mod+m bar mode invisible
+#bindsym $mod+Shift+M bar mode dock
+
+bar {
+     colors {
+			 statusline #221d1d
+    			 background #Ffffff
+##					    #Border #Backgr #Font
+			 focused_workspace  #Ffffff #Ffffff #221d1d
+      			 active_workspace   #Ffffff #Ffffff #BDBDBD 
+      			 inactive_workspace #Ffffff #Ffffff #BDBDBD 
+      			 urgent_workspace   #Ffffff #4189AA #Ffffff
+	}
+			 status_command conky -c ~/.config/i3/conkyrc
+  			 position top
+			 #mode hide
+			 workspace_buttons yes    
+			 tray_output false
+			 font pango:SF UI Text Regular 8
+}
+
+# Couleurs à garder
+# 221d1d > Noir cendré
+# E1F5A9 > Vert 
+# ab4642 > rouge base16
+# deaa87 > rose sable
+# bb9584 > rose orangé
+# BA929C > rosé
+# 4189AA > bleu gris
