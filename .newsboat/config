@@ -1,0 +1,16 @@
+auto-reload "yes"
+reload-time "30"
+player "mpv"
+feed-sort-order name
+browser chromium
+macro o set browser open-in-browser
+macro m set browser "mpv %u"; open-in-browser ; set browser "elinks %u"
+
+# <element>                 <fg>        <bg>         <attr>
+color background  	     white      default
+color listnormal             white   default	
+color listnormal_unread     white     default	bold
+color listfocus_unread      red    default	bold
+color listfocus    	    red     default
+color info         	     cyan   default	bold
+color article      	    white   default	
