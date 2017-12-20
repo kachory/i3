@@ -1,0 +1,50 @@
+#--[Conky configuration file]--#
+
+## No output to X <yes/no>
+out_to_x no
+
+## Create own window to draw <yes/no>
+own_window no
+
+## Print everything to console?
+out_to_console yes
+
+## Use double buffering (reduces flicker, not needed for console output)
+double_buffer no
+
+## Set to yes if you want Conky to be forked in the background
+background no
+
+## Update interval in seconds
+update_interval 1.0
+
+## This is the number of times Conky will update before quitting.
+## Set to zero to run forever.
+total_run_times 0
+
+## Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+## How strict should if_up be when testing an interface for being up?
+## The value is one of up, link or address, to check for the interface
+## being solely up, being up and having link or being up, having link
+## and an assigned IP address. 
+if_up_strictness address
+
+## Add spaces to keep things from moving about?  This only affects certain objects.
+## use_spacer should have an argument of left, right, or none
+use_spacer left
+
+## Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+## number of cpu samples to average
+## set to 1 to disable averaging
+cpu_avg_samples 2
+
+## Stuff after 'TEXT' will be formatted on screen
+TEXT
+
+   $kernel      ${time %d.%m.%Y} - ${time %H:%M}      ${battery_percent BAT1} %
+
+#$${if_running mocp}    ${moc_artist}  -  ${moc_song}       ${moc_curtime} - ${moc_totaltime}   ${endif}{time %a} ${time %d} ${time %B}  ${time %Y} -    ${mem}     ${fs_used_perc /home}%    
